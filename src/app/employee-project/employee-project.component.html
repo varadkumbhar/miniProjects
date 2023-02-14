@@ -1,0 +1,259 @@
+<div class="container-fluid">
+  <div class="row mt-5 p-5">
+    <div class="" [ngClass]="isSidePanelOpen? 'col-md-8':'col-md-12' ">
+      <!-- [ngClass]="{'col-md-8': isSidePanelOpen,'col-md-12': ! isSidePanelOpen}     " -->
+      <!-- [ngClass]="getClassName()" -->
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-6">List Page</div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary" (click)="addPanel()">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row mb-2">
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-3">
+              <select [(ngModel)]="sortBy" class="form-control" >
+                <option value="Select">Select</option>
+                <option value="Name">Name</option>
+                <option value="Technology">Technology</option>
+                <option value="Designation">Designation</option>
+                <option value="Skill">Skill</option>
+                <option value="Experties">Core</option>
+                <option value="Company">Company</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <input type="text" [(ngModel)]="searchText" (ngModelChange)="onSearch()" class="form-control">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-bordered">
+                <thead>
+                  <tr class="text-center">
+                    <th appHighlight>Sr no</th>
+                    <th appHighlight>Name</th>
+                    <th appHighlight>Technology</th>
+                    <th appHighlight>Designation</th>
+                    <th appHighlight>Skill</th>
+                    <th appHighlight>Core Experties</th>
+                    <th>Company</th>
+                    <th>Enter Employee Address</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngIf="employeeArr.length !=0">
+                    <tr *ngFor="let item of employeeArr; let sr=index">
+                      <td>{{sr+1}}</td>
+                      <td>{{item.FirstName}} {{item.LastName}}</td>
+                      <td>{{item.Technology}}</td>
+                      <td>{{item.Designation}}</td>
+                      <td>{{item.Skill}}</td>
+                      <td>{{item.Core}}</td>
+                      <td>{{item.Company}}</td>
+                      <td>
+                        <app-moreless [text]="item.FewDetails" [wordLimit]="8"></app-moreless>
+                      </td>
+                      <td>
+                        <div class="row text-center">
+                          <div class="col-md-4">
+                            <i class="fa-sharp fa-solid fa-pen me-3 ms-3" (click)="onEdit(item)"></i>
+                          </div>
+                          <div class="col-md-4">
+                            <i class="fa-sharp fa-solid fa-trash" (click)="onDelete(item)"></i>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-container>
+                  <ng-container *ngIf="employeeArr.length ==0">
+                    <tr>
+                      <td colspan="8" class="text-center">No record Present</td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" *ngIf="isSidePanelOpen">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-6">Add Form</div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-primary" (click)="onClose()">Close</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row ">
+            <div class="outerDiv">
+              <form #form="ngForm">
+
+                <div class="row mb-2">
+                  <div class="col-md-4">
+                    <label for="">Name</label>
+                  </div>
+
+                  <div class="col-md-4">
+                    <input type="text" name="FirstName" required #fname="ngModel" [(ngModel)]="employeeObj.FirstName"
+                      class="form-control">
+                    <div *ngIf="fname.touched">
+                      <span *ngIf="fname.errors?.['required']">Required</span>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4">
+                    <input type="text" name="LastName" required #lname="ngModel" [(ngModel)]="employeeObj.LastName"
+                      class="form-control">
+                    <div *ngIf="lname.touched">
+                      <span *ngIf="lname.errors?.['required']">Required</span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row mb-2">
+                  <div class="col-md-4">
+                    <label for="">Technology</label>
+                  </div>
+                  <div class="col-md-8">
+                    <select class="form-control" name="technology" #technology="ngModel" [(ngModel)]="employeeObj.Technology">
+                      <option value="Select">Select</option>
+                      <option value="Dot Net">Dot Net</option>
+                      <option value="Angular">AngularJs</option>
+                      <option value="Angular">ReactJs</option>
+                      <option value="Angular">Flutter</option>
+                      <option value="Java">Java</option>
+                    </select>
+                    <!-- <input type="text" name="technology" required="" #technology="ngModel"
+                      [(ngModel)]="employeeObj.Technology" class="form-control"> -->
+                    <div *ngIf="technology.touched">
+                      <span *ngIf="technology.errors?.['required']">Required</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-2">
+                  <div class="col-md-4">
+                    <label for="">Designation</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" name="designation" required="" #designation="ngModel"
+                      [(ngModel)]="employeeObj.Designation" class="form-control">
+                    <div *ngIf="designation.touched">
+                      <span *ngIf="designation.errors?.['required']">Required</span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row mb-2">
+                  <div class="col-md-4">
+                    <label for="">Skill</label>
+                  </div>
+                  <div class="col-md-6">
+                    <select class="form-control" name="skill" #skill="ngModel" [(ngModel)]="employeeObj.Skill">
+                      <option value="Select">Select</option>
+                      <option value="Dot Net">Dot Net</option>
+                      <option value="Angular">Angular</option>
+                      <option value="Java">Java</option>
+                    </select>
+                    <div *ngIf="skill.touched">
+                      <span *ngIf="skill.errors?.['required']">Required</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-2">
+                  <div class="col-md-4">
+                    <label for="">Core Experties In</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" name="core" #core="ngModel" [(ngModel)]="employeeObj.Core" class="form-control">
+                    <div *ngIf="skill.touched">
+                      <span *ngIf="skill.errors?.['required']">Required</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-2">
+                  <div class="col-md-4">
+                    <label for="">Certification If Any</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="radio" value="yes" name="yes" [(ngModel)]="employeeObj.isCertification" /> Yes
+                    <input type="radio" value="no" name="no" [(ngModel)]="employeeObj.isCertification" /> No
+                  </div>
+                </div>
+
+                <div class="row mb-2">
+                  <div class="col-md-4">
+
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" name="certificate" [(ngModel)]="employeeObj.Certification" class="form-control">
+                  </div>
+                </div>
+
+                <div class="row mb-2">
+                  <div class="col-md-4">
+                    <label for="">Company</label>
+                  </div>
+                  <div class="col-md-8">
+                    <input type="text" name="company" #company="ngModel" [(ngModel)]="employeeObj.Company"
+                      class="form-control">
+                    <div *ngIf="company.touched">
+                      <span *ngIf="company.errors?.['required']">Required</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-2">
+                  <div class="col-md-12">
+                    <label for="">Employee Address</label>
+                    <input type="text" name="FewDetails" class="form-control" #fewDetails="ngModel"
+                      [(ngModel)]="employeeObj.FewDetails" placeholder="Enter Employee Address">
+                    <!-- <textarea rows="3" class="form-control" #fewDetails="ngModel"  [(ngModel)]="employeeObj.FewDetails" placeholder="Enter Employee Address"></textarea> -->
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="" *ngIf="employeeObj.employeeId==0">
+                <button appAdminAccesss class="btn btn-primary mx-1 btn-sm" [disabled]="form.invalid"
+                  (click)="onSave()">Save</button>
+              </div>
+              <div class="" *ngIf="employeeObj.employeeId!=0">
+                <button class="btn btn-sm btn-warning " (click)="updateEmployee()">Update</button>
+              </div>
+
+            </div>
+            <div class="col-md-2">
+              <button appAdminAccesss class="btn btn-secondary btn-sm" (click)="onClear()">Clear</button>
+            </div>
+            <div class="col-md-1">
+              <button appAdminAccesss class="btn btn-dark text-White btn-sm" (click)="onBack()">Back</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

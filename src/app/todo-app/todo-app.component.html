@@ -1,0 +1,61 @@
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h1 class=" bg-secondary text-center text-white">To Do App</h1>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <div class="card mb-5" *ngIf="isshow">
+                <div class="card-header bg-success text-white text-center">
+                  To Do
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="row ">
+                        <div class="col-md-6">
+                          <input type="text" placeholder="To-Do-Item" class="form-control" [(ngModel)]="todoObj.todoItem">
+                        </div>
+                        <div class="col-md-2">
+                          <input type="color" class="form-control" [(ngModel)]="todoObj.color">
+                        </div>
+                        <div class="col-md-2">
+                          <button class="btn btn-sm btn-primary" (click)="onItemAdd()">Add</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col-md-4" *ngFor="let item of todoItemArray">
+                          <div class="todoItem text-white text-center bgDiv rounded-3"
+                            [style.background-color]="item.color">
+                            {{item.todoItem}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer text-center">
+                  <button class="btn btn-dark text-white btn-sm" (click)="onClear()">Clear</button>
+                </div>
+              </div>
+              <div class="text-center">
+                <button class="btn btn-sm btn-primary"  (click)="isShow()">Showlist</button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

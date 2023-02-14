@@ -1,0 +1,107 @@
+<div class="container-fluid">
+  <div class="row mt-5 m-5">
+    <div class="col-md-12">
+      <form #form="ngForm">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-12" class="text-center">PRIME THEATER</div>
+            </div>
+          </div>
+          <div class="card-body">
+            <form #movieForm="ngForm">
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+
+                  <div>
+                    <label for="">Select Movie</label>
+                    <select [(ngModel)]="movieTicketObj.selectmovie" name="selectmovie" required #selectMovie class="form-control"  (change)="addMovie(selectMovie.value)">
+                      <option value="Select Movie" selected class="form-control">Select Movie</option>
+                      <option value="kala" class="form-control" >Kaala ($200)</option>
+                      <option value="contagian" class="form-control">Contagian ($300)</option>
+                      <option value="bahubali" class="form-control">Bahubali ($400)</option>
+                      <option value="Other" class="form-control">Other</option>
+                    </select>
+
+                  </div>
+
+                  <div >
+                    <label for="">Select Time Slot</label>
+                    <div *ngIf="isKala">
+                      <select name="kala" class="form-control" [(ngModel)]="movieTicketObj.timeSlot">
+                        <option selected>Select time slot</option>
+                        <option  value="9to12">9.00 AM to 12.00 PM </option>
+                        <option value="4to7">4.00 PM to 7.00 PM </option>
+                      </select>
+                    </div>
+                    <div *ngIf="isContagian" [(ngModel)]="movieTicketObj.timeSlot">
+                      <select name="kala" class="form-control">
+                        <option value="9to12">10.00 PM to 1.00 AM </option>
+                      </select>
+                    </div>
+                    <div *ngIf="isBahubali">
+                      <select name="kala" class="form-control" [(ngModel)]="movieTicketObj.timeSlot">
+                        <option value="9to12">8.00 AM to 11.00 AM </option>
+                        <option value="4to7">11.00 AM to 1.00 PM </option>
+                        <option value="4to7">2.00 PM to 5.00 PM </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <label for="">No. of tickets</label>
+                  <input type="text" required #noOfTickets="ngModel" name="noOfticket" placeholder="No of Tickets" (change)="onTicketChange(movieTicketObj.noOfTickets)"
+                    [(ngModel)]="movieTicketObj.noOfTickets" class="form-control">
+                    <div *ngIf="noOfTickets.touched">
+                      <span *ngIf="noOfTickets.errors?.['required']">Required</span>
+                    </div>
+
+                  <label for="">Total Amount</label>
+                  <input type="text" name="totalAmt" placeholder="Total Amount" disabled [(ngModel)]="movieTicketObj.totalAmt"
+                   class="form-control">
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <div class="row text-center">
+              <div class="col-md-12">
+                <button class="btn btn-sm btn-warning mx-2" (click)="onsave()">Book ticket</button>
+                <button class="btn btn-sm btn-secondary" (click)="onReset()">Reset</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>SrNo</th>
+                <th>Select Movie</th>
+                <th>Time Slot</th>
+                <th>No of Tickets</th>
+                <th>Total Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of ticketArry; let sr=index">
+                <td>{{sr+1}}</td>
+                <td>{{item.selectmovie}}</td>
+                <td>{{item.timeSlot}}</td>
+                <td>{{item.noOfTickets}}</td>
+                <td>{{item.totalAmt}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

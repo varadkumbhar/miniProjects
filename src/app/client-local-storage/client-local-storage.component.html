@@ -1,0 +1,133 @@
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="" [ngClass]="isSidePanel? 'col-md-8':'col-md-12' ">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            Client List
+                        </div>
+                        <div class="col-md-6 text-end">
+                          <app-void-button [text]="'Add'" [btnClass]="'btn-warning'" (OnClick)="addpanel($event)"></app-void-button>
+                            <!-- <button class="btn btn-sm btn-primary" (click)="addpanel()">Add</button> -->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sr No</th>
+                                <th>Client Name</th>
+                                <th>Business Name</th>
+                                <th>Contact Person</th>
+                                <th>Contact Number</th>
+                                <th>Alternavtive Number</th>
+                                <th>Email</th>
+                                <th>Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let list of clientList; let sr=index">
+                                <td>{{sr+1}}</td>
+                                <!-- <td>{{ clientObj |json}}</td>                                    Json Pipe are used to read the Object -->
+                                <td>{{list.clientName |uppercase |na}}</td>
+                                <td>{{list.businessName |titlecase |na}}</td>
+                                <td>{{list.contactPerson |na}}</td>
+                                <td>{{list.contactNo |na}}</td>
+                                <td>{{list.altContactNo |na}}</td>
+                                <td>{{list.email |na}}</td>
+                                <td>{{list.date | date:'dd-MMM-yy' |na:'NA'}}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning mx-2"  (click)="onEdit(list)">Edit</button>
+                                    <button class="btn btn-sm btn-secondary" (click)="onDelete(list.clientId)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" *ngIf="isSidePanel">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            Add Form
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <button class="btn btn-sm btn-primary" (click)="closepanel()">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Client Name</label>
+                            <input type="text" name="clientName" required #clientName="ngModel" [(ngModel)]="clientObj.clientName" class="form-control">
+                            <div *ngIf="clientName.touched">
+                                <span *ngIf="clientName.errors?.['required']" style="color: red;">Required</span>
+                              </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Business Name</label>
+                            <input type="text" name="businessName" required #businessName="ngModel" [(ngModel)]="clientObj.businessName" class="form-control">
+                            <div *ngIf="businessName.touched">
+                                <span *ngIf="businessName.errors?.['required']" style="color: red;">Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Contact Person</label>
+                            <input type="text" name="contactPerson" required #contactPerson="ngModel" [(ngModel)]="clientObj.contactPerson" class="form-control">
+                            <div *ngIf="contactPerson.touched">
+                                <span *ngIf="contactPerson.errors?.['required']" style="color: red;">Required</span>
+                              </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="">Contact No</label>
+                            <input type="text" name="contactNo" [(ngModel)]="clientObj.contactNo" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Alternative Number</label>
+                            <input type="text" name="altContactNo" [(ngModel)]="clientObj.altContactNo" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="">Email</label>
+                            <input type="text" name="email" [(ngModel)]="clientObj.email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Date</label>
+                            <input type="date" name="date" [(ngModel)]="clientObj.date" class="form-control">
+                        </div>
+                        <div class="col-6">
+                            <label for="">Logo</label>
+                            <input type="text" name="logo" [(ngModel)]="clientObj.logo" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button class="btn btn-sm btn-primary" *ngIf="clientObj.clientId ==0" (click)="onSaveClient()">Save</button>
+                            <button class="btn btn-sm btn-warning" *ngIf="clientObj.clientId !==0" (click)="onUpdateClient()">Update</button>
+
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-sm btn-warning">Cancle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

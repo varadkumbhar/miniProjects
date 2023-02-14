@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8 ">
+          <div class="card ">
+            <div class="card-header">
+              <h3 class="text-center text-secondary">Profile</h3>
+            </div>
+            <div class="card-body">
+              <label for="" >First Name</label>
+              <input type="text" placeholder="Enter First name"  name="firstName" [(ngModel)]="profileObj.firstName" class="form-control">
+
+              <label for="" >Last Name</label>
+              <input type="text" placeholder="Enter Last name"name="LastName" [(ngModel)]="profileObj.lastName" class="form-control">
+
+              <label for="" >Designation</label>
+              <input type="text" placeholder="Enter Designation"name="Designation" [(ngModel)]="profileObj.designation" class="form-control">
+
+              <label for="" >Current Employment</label>
+              <input type="text" placeholder="Enter Current Company"name="Employment" [(ngModel)]="profileObj.currntEmployment" class="form-control">
+
+              <div class="mt-3">
+                <button class="btn btn-sm btn-primary mx-2" (click)="OnSave()">Save</button>
+                <button class="btn btn-sm text-white btn-dark " routerLink="/Machine_Test">Back</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>

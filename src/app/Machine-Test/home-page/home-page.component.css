@@ -1,0 +1,81 @@
+.cardCandidate{
+  background:#17a2b8;
+}
+.cardCourse{
+  background: #28a745;
+}
+.cardEnroll{
+  background: #ffc107;
+}
+.cardBatches{
+  background: #6f42c1;
+}
+.cardEnquiry{
+  background: #dc3545;
+}
+.cardTestGrp{
+  background:#20c997;
+}
+
+
+
+.cardCandidate:hover{
+  z-index: 100;
+  transform: scale(1.1);
+  animation: scale 0.4s linear;
+  animation-fill-mode: forwards;
+
+
+}
+
+.cardCourse:hover{
+  z-index: 100;
+  transform: scale(1.1);
+  animation: scale 0.4s linear;
+  animation-fill-mode: forwards;
+}
+
+.cardEnroll:hover{
+  z-index: 100;
+  transform: scale(1.1);
+  animation: scale 0.4s linear;
+  animation-fill-mode: forwards;
+}
+
+.cardBatches:hover{
+  z-index: 100;
+  transform: scale(1.1);
+  animation: scale 0.4s linear;
+  animation-fill-mode: forwards;
+}
+
+.cardEnquiry:hover{
+  z-index: 100;
+  transform: scale(1.1);
+  animation: scale 0.4s linear;
+  animation-fill-mode: forwards;
+}
+.cardTestGrp:hover{
+  z-index: 100;
+  transform: scale(1.1);
+  animation: scale 0.4s linear;
+  animation-fill-mode: forwards;
+}
+
+
+.signOut{
+  /* margin-left: 1600px; */
+font-size: 20px;
+padding-left: 1300px;
+}
+
+
+.footer-hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out
+}
+
+.footer-hover:hover {
+  background-color: rgba(0, 0, 0, 0.2)
+}

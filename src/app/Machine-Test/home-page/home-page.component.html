@@ -1,0 +1,124 @@
+<div class="container-fluid">
+  <!--Header Logo-->
+  <div class="row">
+    <div class="col-md-12 mb-4 mt-2">
+      <div class="header">
+        <!-- <img src="\assets\logoDashboard.png" alt="logoDashboard" style="width: 100px;"> -->
+        <!-- <i routerLink="/Login" class="fa fa-sign-out signOut" aria-hidden="true"></i> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="row ">
+    <div class="col-md-12 ">
+      <!--Cards-->
+      <div class="row ">
+        <div class="col-md-12 ">
+          <div class="row">
+            <div>
+              <h2 class="headline text-secondary mb-3">Welcome</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <button class="btn btn-sm btn-primary ms-3" routerLink="/Profile-Page">Profile</button>
+              <button class="btn btn-sm btn-primary ms-3" routerLink="/Gallery-Page">Gallery</button>
+              <button class="btn btn-sm btn-primary ms-3" routerLink="/Setting-Page">Setting</button>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-md-12">
+              <div class="row ms-lg-5">
+
+                <div class="col-md-3 mx-5" *ngIf="homeArray.ProfileShow=='yes'">
+                  <div class="card cardCandidate text-white" style="width: 22rem;">
+                    <div class="card-body d-flex ">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-2"><i class="fa fa-users" style="font-size: 30px;"
+                                aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-6">
+                              <h5 class="card-title text-center mt-1 text-white">Profile
+                                Score
+                              </h5>
+                            </div>
+                            <div class=" col-md-4 text-white text-end">
+                              <h2><strong>{{pScore}}</strong></h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div routerLink="/Profile-Page"
+                      class="card-footer footer-hover small text-center white-text border-0 p-2">
+                      More info<i class="fa fa-arrow-circle-right ms-2" aria-hidden="true"></i></div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="col-md-3 mx-5" *ngIf="homeArray.GalleryShow=='yes'">
+                  <div class="card cardCourse text-white" style="width: 22rem;">
+                    <div class="card-body d-flex ">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-2"><i class="fa fa-book " style="font-size: 30px;"
+                                aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-6">
+                              <h5 class="card-title text-center mt-1 text-white">Gallery</h5>
+                            </div>
+                            <div class=" col-md-4 text-white text-end ">
+                              <h2><strong>{{gScore}}</strong></h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div routerLink="/Gallery-Page"
+                      class="card-footer footer-hover small text-center white-text border-0 p-2">More info<i
+                        class="fa fa-arrow-circle-right ms-2" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-3 mx-5" *ngIf="homeArray.AvgShow=='yes'">
+                  <div class="card cardEnroll text-white" style="width: 22rem;">
+                    <div class="card-body d-flex ">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col-md-2"><i class="fa fa-id-card-o  " style="font-size: 30px;"
+                              aria-hidden="true"></i>
+                          </div>
+                            <div class="col-md-6">
+                              <h5 class="card-title text-center mt-1 text-white">Average Score</h5>
+                            </div>
+                            <div class=" col-md-4 text-white text-end ">
+                              <h2><strong>{{AvgScore}}</strong></h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div routerLink="/Setting-Page"
+                      class="card-footer footer-hover small text-center white-text border-0 p-2">More info<i
+                        class="fa fa-arrow-circle-right ms-2" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+ <div class="container-fluid mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header"></div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Sr No</th>
+                <th>Candidate</th>
+                <th>Batch</th>
+                <th>Technology</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let list of candidateArray; let sr=index">
+                <td>{{sr +1}}</td>
+                <td>{{list.candidateName}}</td>
+                <td>{{list.batch}}</td>
+                <td>{{list.technology}}</td>
+                <td>{{list.phone}}</td>
+                <td>{{list.email}}</td>
+                <td>{{list.address}}</td>
+                <td>
+                  <button class="btn btn-sm btn-warning mx-2" (click)="onEdit(list.candidateId)">Edit</button>
+                  <button class="btn btn-sm btn-danger" (click)="onDelete(list.candidateId)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <form #form="ngForm">
+        <div class="card">
+          <div class="card-header"></div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="">Candidate Full Name</label>
+                <input type="text" required #name="ngModel" name="name" class="form-control" [(ngModel)]="candidateObj.candidateName">
+
+                <label for="">Tachnology</label>
+                <input type="text" required #tchnology="ngModel" name="name" class="form-control" [(ngModel)]="candidateObj.technology">
+
+                <label for="">Email</label>
+                <input type="text" required #email="ngModel" name="name" class="form-control" [(ngModel)]="candidateObj.email">
+
+              </div>
+              <div class="col-md-6">
+                <label for="">Batch</label>
+                <select name="batch" required #batch="ngModel" class="form-control" [(ngModel)]="candidateObj.batch">
+                  <option value="Beginner">Beginner</option>
+                  <option value="Beginner">Intermediate</option>
+                  <option value="Beginner">Advance</option>
+                </select>
+
+                <label for="">Phone</label>
+                <input type="text" required #phone="ngModel" name="name" class="form-control" [(ngModel)]="candidateObj.phone">
+
+                <label for="">Address</label>
+                <textarea name="address" required #address="ngModel"  cols="25" rows="4" class="form-control" [(ngModel)]="candidateObj.address"></textarea>
+
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-sm btn-primary mx-2" *ngIf="candidateObj.candidateId==0" (click)="onSave()">Save</button>
+            <button class="btn btn-sm btn-primary mx-2" *ngIf="candidateObj.candidateId!==0" (click)="onUpdate()">Update</button>
+
+            <button class="btn btn-sm btn-dark text-white" (click)="onClear()">Clear</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+</div>

@@ -1,0 +1,13 @@
+.bgDiv{
+  background-color: lightpink;
+  height: 100px;
+  width: 150px;
+ justify-content: center;
+ justify-items: center;
+
+}
+.todoItem{
+  margin-top: 23%;
+  padding-top: 30px;
+
+}

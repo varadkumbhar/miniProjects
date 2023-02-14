@@ -1,0 +1,154 @@
+<div class="container-fluid mt-5">
+  <div class="row">
+    <div class="" [ngClass]="issidepanelOpen ? 'col-md-8':'col-md-12' ">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-6">
+              client List
+            </div>
+            <div class="col-md-6 text-end">
+              <button class="btn btn-sm btn-primary" (click)="addpanel()">Add</button>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Sr No</th>
+                <th>Client Name</th>
+                <th>Business Name</th>
+                <th>Contact Person</th>
+                <th>Contact Number</th>
+                <th>Alternavtive Number</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let list of clientLIST,let sr=index ">
+                <td>{{sr+1}}</td>
+                <!-- <td>{{ clientObj |json}}</td>                                    Json Pipe are used to read the Object -->
+                <td>{{list.clientName |uppercase |na}}</td>
+                <td>{{list.businessName |titlecase |na}}</td>
+                <td>{{list.contactPerson |na}}</td>
+                <td>{{list.contactNo |na}}</td>
+                <td>{{list.altContactNo |na}}</td>
+                <td>{{list.email |na}}</td>
+                <td>{{list.date | date:'dd-MMM-yy' |na:'NA'}}</td>
+                <td>
+                  <button class="btn btn-sm btn-warning mx-2" (click)="onEdit(list)">Edit</button>
+                  <button class="btn btn-sm btn-secondary">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" *ngIf="issidepanelOpen">
+      <form action="" [formGroup]="clientForm">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6">
+                Add client
+              </div>
+              <div class="col-md-6 text-end">
+                <button class="btn btn-sm btn-warning" (click)="closepanel()">close</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+
+                <label for="">client Name</label>
+                <input type="text" formControlName="clientName" class="form-control" placeholder="Client Name"
+                  name="clientName" id="clientName">
+                <div>
+                  <span class="text-danger" *ngIf="clientForm.controls['clientName']?.touched ">Required</span>
+                </div>
+
+
+                <label for="">contactPerson</label>
+                <input type="text" formControlName="contactPerson" class="form-control" placeholder="contactPerson Name"
+                  name="contactPerson">
+                <div *ngIf="['clientName']">
+                  <span class="text-danger" *ngIf="clientForm.controls['contactPerson']?.touched">Required</span>
+                </div>
+
+                <label for="">altContactNo</label>
+                <input type="text" formControlName="altContactNo" class="form-control" placeholder="altContactNo"
+                  name="altContactNo">
+                <div>
+                  <span class="text-danger" *ngIf="clientForm.controls['altContactNo']?.touched">Required</span>
+                </div>
+
+
+                <label for="">createdDate</label>
+                <input type="date" formControlName="createdDate" class="form-control" placeholder="createdDate"
+                  name="createdDate">
+                <div>
+                  <span class="text-danger" *ngIf="clientForm.controls['createdDate']?.touched">Required</span>
+                </div>
+
+              </div>
+              <div class="col-md-6">
+
+                <label for="">Business Name</label>
+                <input type="text" formControlName="businessName" class="form-control" placeholder="Business Name"
+                  name="businessName">
+                <div>
+                  <span class="text-danger" *ngIf="clientForm.controls['businessName']?.touched">Required</span>
+                </div>
+
+                <label for="">contactNo</label>
+                <input type="text" formControlName="contactNo" class="form-control" placeholder="Client Name"
+                  name="contactNo">
+                <div>
+                  <span class="text-danger" *ngIf="clientForm.controls['contactNo']?.touched">Required</span>
+                </div>
+
+                <label for="">email</label>
+                <input type="email" formControlName="email" class="form-control" placeholder="email" name=" email">
+                <div>
+                  <span class="text-danger" *ngIf="clientForm.controls['email']?.touched">Required</span>
+                </div>
+
+                <label for="">logo</label>
+                <input type="text" formControlName="logo" class="form-control" placeholder="logo" name="logo">
+                <div>
+                  <span class="text-danger" *ngIf="clientForm.controls['logo']?.touched">Required</span>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-md-6">
+                <button class="btn btn-sm btn-primary" *ngIf="clientForm.controls['clientId'].value ==0 "
+                  (click)="onsaveClient()">Save</button>
+                <button class="btn btn-sm btn-warning" *ngIf="clientForm.controls['clientId'].value !== 0 "
+                  (click)="onUpdateClient()">Update</button>
+
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-sm btn-warning">Cancle</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
